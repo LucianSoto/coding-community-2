@@ -1,10 +1,11 @@
 const mongoose = require('mongoose')
+mongoose.set("strictQuery", false);
 
 const connectDB = async () => {
   try {
-    const connection = await mongoose.connect(process.env.MONGO_URI)
+    const connection = await mongoose.connect(process.env.ATLAS_URI)
 
-    console.log(`MongoDB Connected: ${conn.conneciton.host}`.cyan.underline)
+    console.log(`MongoDB Connected: ${connection.connection.host}`.cyan.underline)
   } catch (err) {
     console.log(err)
     process.exit(1)
