@@ -8,11 +8,11 @@ const postSchema = mongoose.Schema(
       ref: 'User',
     },
     title: {
-      type: Array,
+      type: String,
       required: false,
     },
     body: {
-      type: Array,
+      type: String,
       required: false,
     },
     image: {
