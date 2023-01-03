@@ -6,11 +6,12 @@ function PostItem({ post }) {
 
   return (
     <div className=''>
-      <div>{new Date(post.createdAt).toLocaleString('en-US')}</div>
-      <h2>{post.text}</h2>
+      {/* <div>{new Date(post.createdAt).toLocaleString('en-US')}</div> */}
+      <h2>{post.title}</h2>
       <button onClick={() => dispatch(deletePost(post._id))} className='close'>
         X
       </button>
+      
     </div>
   )
 }

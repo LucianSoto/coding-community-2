@@ -113,6 +113,14 @@ export const postSlice = createSlice({
         state.isError = true
         state.message = action.payload
       })
+      // .addCase(editPost.pending, (state) => {
+      //   state.isLoading = true
+      // })
+      // .addCase(editPost.fufilled, (state, action) => {
+      //   state.isLoading = false
+      //   state.isSuccess = true
+      //   state.posts = state.posts.
+      // })
   },
 })
 
