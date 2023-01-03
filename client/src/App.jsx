@@ -6,6 +6,7 @@ import Dashboard from './pages/Dashboard'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Nav from './components/Nav'
+import UpdatePost from './pages/UpdatePost'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path='/' element={<Dashboard />} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
+            <Route path='/update_post/:id' element={<UpdatePost/>} />
           </Routes>
         </div>
       </Router>

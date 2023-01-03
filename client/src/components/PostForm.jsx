@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { createPost } from '../features/posts/postSlice'
 
-function GoalForm() {
+function PostForm() {
   const [form, setForm] = useState({
     title: '',
   })
@@ -51,4 +51,4 @@ function GoalForm() {
   )
 }
 
-export default GoalForm
+export default PostForm

@@ -46,7 +46,6 @@ function Dashboard() {
         {posts.length > 0 ? (
           <div className=''>
             {posts.map((post) => (
-              console.log(post),
               <PostItem key={post._id} post={post} />
             ))}
           </div>

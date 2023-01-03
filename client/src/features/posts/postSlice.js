@@ -28,6 +28,24 @@ export const createPost = createAsyncThunk(
   }
 )
 
+export const editPost = createAsyncThunk(
+  'posts/editPost',
+  async (postData, id, thunkAPI) => {
+    try{
+      const token = thunkAPI.getState().auth.user.token
+      return await postService.editPost(postData, id, token)
+    } catch (error) {
+      const message = 
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString()
+    return thunkAPI.rejectWithValue(message)
+    }
+  }
+)
+
 export const getPosts = createAsyncThunk(
   'posts/',
   async (_, thunkAPI) => {
@@ -51,7 +69,7 @@ export const deletePost = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token
-      return await postService.deleteGoal(id, token)
+      return await postService.deletePost(id, token)
     } catch (error) {
       const message =
         (error.response &&
@@ -105,7 +123,7 @@ export const postSlice = createSlice({
         state.isLoading = false
         state.isSuccess = true
         state.posts = state.posts.filter(
-          (goal) => goal._id !== action.payload.id
+          (post) => post._id !== action.payload.id
         )
       })
       .addCase(deletePost.rejected, (state, action) => {
@@ -113,14 +131,19 @@ export const postSlice = createSlice({
         state.isError = true
         state.message = action.payload
       })
-      // .addCase(editPost.pending, (state) => {
-      //   state.isLoading = true
-      // })
-      // .addCase(editPost.fufilled, (state, action) => {
-      //   state.isLoading = false
-      //   state.isSuccess = true
-      //   state.posts = state.posts.
-      // })
+      .addCase(editPost.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(editPost.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.isSuccess = true
+        state.posts = action.payload.slice(0)
+      })
+      .addCase(editPost.rejected, (state, action) => {
+        state.isLoading = false
+        state.isError = true
+        state.message = action.payload
+      })
   },
 })
 

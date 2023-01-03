@@ -11,9 +11,8 @@ const createPost = async (postData, token) => {
       Authorization: `Bearer ${token}`,
     },
   }
-
   const response = await axios.post(API_URL, postData, config)
-  console.log(response)
+  // console.log(response)
   return response.data
 }
 
@@ -32,20 +31,31 @@ const getPosts = async (token) => {
 
 // Delete user goal
 const deletePost = async (postId, token) => {
+  // console.log(postId, token, 'in service')
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   }
-
   const response = await axios.delete(API_URL + postId, config)
-
   return response.data
+}
+
+const editPost = async (postData, id, token) => {
+  console.log(postData, id, 'in edit')
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+    const response = await axios.post(API_URL, postData, config)
+    return response.data
 }
 
 const postService = {
   createPost,
   getPosts,  
+  editPost,
   // get feed
   deletePost,
 }
