@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import PostForm from '../components/PostForm'
-// import GoalItem from '../components/GoalItem'
+import PostItem from '../components/PostItem'
 import Spinner from '../components/Spinner'
 import { getPosts, reset } from '../features/posts/postSlice'
 
@@ -24,12 +24,15 @@ function Dashboard() {
       navigate('/login')
     }
 
-    dispatch(getPosts())
+    // dispatch(getPosts())
+    console.log('should get posts')
 
     return () => {
       dispatch(reset())
     }
-  }, [user, navigate, isError, message, dispatch])
+  }, 
+    // [user, navigate, isError, message, dispatch]
+    )
 
   if (isLoading) {
     return <Spinner />
@@ -39,21 +42,21 @@ function Dashboard() {
     <>
       <section className='heading'>
         <h1>Welcome {user && user.name}</h1>
-        <p>Goals Dashboard</p>
+        <p>Dashboard</p>
       </section>
 
       <PostForm />
 
       <section className='content'>
-        {/* {goals.length > 0 ? (
-          <div className='goals'>
-            {goals.map((goal) => (
-              // <PostItem key={goal._id} goal={goal} />
+        {posts.length > 0 ? (
+          <div className=''>
+            {posts.map((post) => (
+              <PostItem key={post._id} post={post} />
             ))}
           </div>
         ) : (
-          <h3>You have not set any goals</h3>
-        )} */}
+          <h3>You have no posts</h3>
+        )}
       </section>
     </>
   )

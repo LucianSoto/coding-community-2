@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-const API_URL = '/api/posts/'
+// can use process.env as well to hide route. or use proxy
+const API_URL = 'http://localhost:9000/api/posts/'
 
 // Create new goal
 const createPost = async (postData, token) => {
@@ -18,6 +19,7 @@ const createPost = async (postData, token) => {
 // Get user goals
 // get feed
 const getPosts = async (token) => {
+  console.log('getting posts')
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,

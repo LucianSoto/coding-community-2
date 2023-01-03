@@ -5,13 +5,14 @@ import 'react-toastify/dist/ReactToastify.css'
 import Dashboard from './pages/Dashboard'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import Nav from './components/Nav'
 
 function App() {
   return (
     <>
       <Router>
         <div className='container'>
-          {/* <Header /> */}
+          <Nav />
           <Routes>
             <Route path='/' element={<Dashboard />} />
             <Route path='/login' element={<Login />} />

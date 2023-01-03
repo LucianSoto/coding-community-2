@@ -28,11 +28,11 @@ export const createPost = createAsyncThunk(
 )
 
 export const getPosts = createAsyncThunk(
-  'posts/getAll',
+  'posts/',
   async (_, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token
-      return await postService.getGoals(token)
+      return await postService.getPosts(token)
     } catch (error) {
       const message =
         (error.response &&
@@ -64,7 +64,7 @@ export const deletePost = createAsyncThunk(
 )
 
 export const postSlice = createSlice({
-  name: 'goal',
+  name: 'post',
   initialState,
   reducers: {
     reset: (state) => initialState,
@@ -77,7 +77,7 @@ export const postSlice = createSlice({
       .addCase(createPost.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
-        state.goals.push(action.payload)
+        state.posts.push(action.payload)
       })
       .addCase(createPost.rejected, (state, action) => {
         state.isLoading = false
@@ -90,7 +90,7 @@ export const postSlice = createSlice({
       .addCase(getPosts.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
-        state.goals = action.payload
+        state.posts = action.payload
       })
       .addCase(getPosts.rejected, (state, action) => {
         state.isLoading = false
@@ -103,7 +103,7 @@ export const postSlice = createSlice({
       .addCase(deletePost.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
-        state.goals = state.goals.filter(
+        state.posts = state.posts.filter(
           (goal) => goal._id !== action.payload.id
         )
       })

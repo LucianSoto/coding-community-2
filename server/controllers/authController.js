@@ -4,9 +4,10 @@ const asyncHandler = require('express-async-handler')
 const User = require('../models/userModel')
 
 const registerUser = asyncHandler(async (req, res) => {
-  const { name, email, password } = req.body
+  console.log(req.body, 'in auth controller')
+  const { username, email, password } = req.body
 
-  if (!name || !email || !password) {
+  if (!username || !email || !password) {
     res.status(400)
     throw new Error('Please add all fields')
   }
@@ -25,12 +26,13 @@ const registerUser = asyncHandler(async (req, res) => {
 
   // Create user
   const user = await User.create({
-    name,
+    username,
     email,
     password: hashedPassword,
   })
 
   if (user) {
+    console.log('created')
     res.status(201).json({
       _id: user.id,
       name: user.name,
