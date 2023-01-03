@@ -13,6 +13,7 @@ export const createPost = createAsyncThunk(
   'posts/create',
   async (postData, thunkAPI) => {
     try {
+      // console.log(postData, 'in slice')
       const token = thunkAPI.getState().auth.user.token
       return await postService.createPost(postData, token)
     } catch (error) {

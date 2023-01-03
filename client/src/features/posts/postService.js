@@ -5,6 +5,7 @@ const API_URL = 'http://localhost:9000/api/posts/'
 
 // Create new goal
 const createPost = async (postData, token) => {
+  console.log(postData, token, 'in service')
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -12,14 +13,12 @@ const createPost = async (postData, token) => {
   }
 
   const response = await axios.post(API_URL, postData, config)
-
+  console.log(response)
   return response.data
 }
 
-// Get user goals
 // get feed
 const getPosts = async (token) => {
-  console.log('getting posts')
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,

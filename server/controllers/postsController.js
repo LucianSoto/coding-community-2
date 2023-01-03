@@ -18,13 +18,18 @@ const getPosts = asyncHandler(async (req, res) => {
 
 // Make a Post
 const setPost = asyncHandler(async (req, res) => {
-  const newPost = new Post(req.body)
-  try{
-    const savedPost = await newPost.save()
-    res.status(200).json(savedPost)
-  } catch (err) {
-    res.status(500).json(err)
+  console.log(req.user, req.body.title)
+  if (!req.body.title) {
+    res.status(400)
+    throw new Error('Please add a text field')
   }
+
+  const post = await Post.create({
+    title: req.body.title,
+    userId: req.user.id,
+  })
+
+  res.status(200).json(post)
 })
 // const setPost = asyncHandler(async (req, res) => {
 //   console.log(req.body)

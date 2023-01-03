@@ -3,29 +3,43 @@ import { useDispatch } from 'react-redux'
 import { createPost } from '../features/posts/postSlice'
 
 function GoalForm() {
-  const [text, setText] = useState('')
+  const [form, setForm] = useState({
+    title: '',
+  })
 
   const dispatch = useDispatch()
+
+  const changeForm = (e) => {
+    setForm((prevState) => ({
+      ...prevState,
+      [e.target.name] : e.target.value
+    }))
+  }
 
   const onSubmit = (e) => {
     e.preventDefault()
 
-    dispatch(createPost({ text }))
-    setText('')
+    dispatch(createPost(form))
+    setForm({
+      title: ''
+    })
   }
 
   return (
     <section className='form'>
       <form onSubmit={onSubmit}>
         <div className='form-group'>
-          <label htmlFor='text'>Care to share?</label>
+          <h3>Care to Share?</h3>
+          <label htmlFor='title'>What's on your mind?</label>
+          <br />
           <input
             type='text'
-            name='text'
+            name='title'
             id='text'
-            value={text}
-            onChange={(e) => setText(e.target.value)}
+            value={FormData.title}
+            onChange={(e) => changeForm(e)}
           />
+          {/* <label htmlFor=""></label> */}
         </div>
         <div className='form-group'>
           <button className='btn btn-block' type='submit'>

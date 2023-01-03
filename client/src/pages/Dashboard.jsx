@@ -24,9 +24,7 @@ function Dashboard() {
       navigate('/login')
     }
 
-    // dispatch(getPosts())
-    console.log('should get posts')
-
+    dispatch(getPosts())
     return () => {
       dispatch(reset())
     }
@@ -41,8 +39,7 @@ function Dashboard() {
   return (
     <>
       <section className='heading'>
-        <h1>Welcome {user && user.name}</h1>
-        <p>Dashboard</p>
+        <h1>Welcome {user && user.username}</h1>
       </section>
 
       <PostForm />
