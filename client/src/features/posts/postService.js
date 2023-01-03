@@ -41,14 +41,14 @@ const deletePost = async (postId, token) => {
   return response.data
 }
 
-const editPost = async (postData, id, token) => {
-  console.log(postData, id, 'in edit')
+const editPost = async (postData, token) => {
+  console.log(postData, 'in edit')
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   }
-    const response = await axios.post(API_URL, postData, config)
+    const response = await axios.put(`${API_URL}/${postData._id}`, postData, config)
     return response.data
 }
 

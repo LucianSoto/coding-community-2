@@ -30,10 +30,10 @@ export const createPost = createAsyncThunk(
 
 export const editPost = createAsyncThunk(
   'posts/editPost',
-  async (postData, id, thunkAPI) => {
+  async (postData, thunkAPI) => {
     try{
       const token = thunkAPI.getState().auth.user.token
-      return await postService.editPost(postData, id, token)
+      return await postService.editPost(postData, token)
     } catch (error) {
       const message = 
         (error.response &&
@@ -137,7 +137,7 @@ export const postSlice = createSlice({
       .addCase(editPost.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
-        state.posts = action.payload.slice(0)
+        state.posts = action.payload
       })
       .addCase(editPost.rejected, (state, action) => {
         state.isLoading = false

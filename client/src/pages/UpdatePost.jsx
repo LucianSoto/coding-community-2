@@ -44,10 +44,10 @@ function UpdatePost() {
     e.preventDefault()
     
     dispatch(editPost(form, id))
-    setForm({
-      title: ''
-    })
-    navigate('/')
+    // setForm({
+    //   title: ''
+    // })
+    // navigate('/')
   }
 
   // console.log(form, 'form')

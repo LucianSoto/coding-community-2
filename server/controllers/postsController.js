@@ -6,7 +6,7 @@ const User = require('../models/userModel')
 // Worry about getting user feed/timeline after posting posts.
 
 const getPosts = asyncHandler(async (req, res) => {
-  console.log(req.user)
+  // console.log(req.user)
   const posts = await Post.find({ userId: req.user.id })
   res.status(200).json(posts)
 })
@@ -55,9 +55,27 @@ const deletePost = asyncHandler(async (req, res) => {
 })
 
 const editPost = asyncHandler(async (req, res) => {
-  console.log(req.user, 'user')
-  console.log(req.body)
-  // const post = await Post.findById(req.params.id)
+  // console.log(req.user, 'user')
+  // console.log(req.body, 'body')
+  // console.log(req.params, 'params')
+  const post = await Post.findById(req.params.id)
+  if (!post) {
+    res.status(400)
+    throw new Error('Post not found')
+  }
+  if(!req.user){
+    res.status(401)
+    throw new Error('User not found')
+  }
+  if(post.userId.toString() !== req.user.id) {
+    res.status(401)
+    throw new Error('User not found')
+  }
+  // console.log('about to edit')
+  const updatePost = await Post.findByIdAndUpdate(req.params.id, req.body, {
+    new:true,
+  })
+  res.status(200).json(updatePost)
 })
 
 module.exports = { getPosts, setPost, deletePost, editPost }
