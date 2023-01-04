@@ -22,7 +22,7 @@ function App() {
             <Route path='/register' element={<Register />} />
             <Route path='/update_post/:id' element={<UpdatePost/>} />
             <Route path='/search/:user' element={<SearchUsers />} />
-            <Route path="/profile/:username" element={<Profile/>}/>
+            <Route path="/profile/:id" element={<Profile/>}/>
           </Routes>
         </div>
       </Router>

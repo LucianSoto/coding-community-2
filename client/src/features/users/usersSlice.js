@@ -27,6 +27,24 @@ export const searchUsers = createAsyncThunk(
   }
 )
 
+export const userPosts = createAsyncThunk(
+  'users/posts',
+  async (id, thunkAPI) => {
+    try {
+      console.log('in userslice')
+      const token = thunkAPI.getState().auth.user.token
+      return await usersService.userPosts(id, token)
+    } catch (error) {
+      const message = (
+        error.response && 
+        error.response.data &&
+        error.response.data.message 
+      ) || error.message || error.toString()
+      return thunkAPI.rejectWithValue(message)
+    }
+  }
+)
+
 export const usersSlice = createSlice({
   name: 'users',
   initialState,
@@ -41,9 +59,22 @@ export const usersSlice = createSlice({
     .addCase(searchUsers.fulfilled, (state, action) => {
       state.isLoading = false
       state.isError = true
-      state.users = (action.payload.map(user => user))
+      state.users.push(action.payload)
     })
     .addCase(searchUsers.rejected, (state, action ) => {
+      state.isLoading = false
+      state.isError = true
+      state.users = action.payload
+    })
+    .addCase(userPosts.pending, (state) => {
+      state.isLoading = true
+    })
+    .addCase(userPosts.fulfilled, (state, action) => {
+      state.isLoading = false
+      state.isError = true
+      state.users.push(action.payload)
+    })
+    .addCase(userPosts.rejected, (state, action) => {
       state.isLoading = false
       state.isError = true
       state.users = action.payload
