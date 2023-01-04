@@ -14,7 +14,7 @@ function App() {
   return (
     <>
       <Router>
-        <div className='container'>
+        <div id='app' className='w-full h-full'>
           <Nav />
           <Routes>
             <Route exact path='/' element={<Dashboard />} />

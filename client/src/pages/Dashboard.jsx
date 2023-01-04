@@ -36,8 +36,8 @@ function Dashboard() {
 
   return (
     <>
-      <section className='heading'>
-        <h1>Welcome {user && user.username}</h1>
+      <section className='heading mt-24'>
+        <h1 className='font-bolder text-4xl mb-10'>Welcome {user && user.username}</h1>
       </section>
 
       <PostForm />

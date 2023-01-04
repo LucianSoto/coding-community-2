@@ -29,13 +29,31 @@ function Nav() {
   }
 
   return (
-    <header className='header bg-white px-2 sm:px-4 py-2.5 dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600 '>
-      <div className='logo '>
-        <Link to='/'>Home</Link>
+    <header className='header bg-white px-2 sm:px-4 py-2.5 bg-gradient-to-r from-indigo-600 to-cyan-500 ... fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600  flex justify-between pl-4 pr-10'>
+      <div className='pl-4 logo text-4xl font-semibold whitespace-nowrap dark:text-white'>
+        <Link to='/'>Coding Community</Link>
       </div>
       <div className="search">
+
         <input type="text" 
-          placeholder='Enter Full Name'
+          className="
+          form-control
+          block
+          w-60
+          px-3
+          py-1.5
+          text-base
+          font-normal
+          text-gray-700
+          bg-white bg-clip-padding
+          border border-solid border-gray-300
+          rounded-full
+          transition
+          ease-in-out
+          m-0
+          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+        "
+          placeholder=' Search Users by Full Name'
           name="search"
           value={searchText}
           onChange={(e)=> setSearchText(prevState => e.target.value)}
@@ -52,10 +70,10 @@ function Nav() {
           
         ) : (
           <>
-            <Link to='/login'>
+            <Link className='text-2xl pr-10 font-semibold text-white' to='/login'>
               Login
             </Link>
-            <Link to='/register'>
+            <Link className='text-2xl pr-10 font-semibold text-white' to='/register'>
               Register
             </Link>
           </>

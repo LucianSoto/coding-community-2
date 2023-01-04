@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+*{box-sizing: border-box;}
+
+#root, body, #app, html, :root {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -16,8 +27,7 @@ code {
     monospace;
 }
 
-
-
-* {
-  color: whitesmoke;
+img {
+  width: 200px;
+  height: 200px;
 }

@@ -64,70 +64,124 @@ function Register() {
 
   return (
     <>
-      <section className='heading'>
-        <h1>
-          <FaUser /> Register
-        </h1>
-        <p>Please create an account</p>
+      <section className='heading mt-32 '>
+        <h1 className='font-bold text-5xl mb-10'>Coding Community</h1>
       </section>
 
-      <section className='form'>
-        <form onSubmit={onSubmit}>
-          <div className='form-group'>
+      <section className='form border-2 border-solid shadow-md rounded-xl p-10 mb-8'>
+      <p className='font-bolder text-3xl mb-10'>Register with us!</p>
+        <form onSubmit={onSubmit} className='flex flex-col items-center w-full' >
             <input
               type='text'
-              className='form-control'
+              className='form-control
+              form-control
+              block
+              w-3/4
+              px-3
+              py-1.5
+              text-base
+              font-normal
+              text-gray-700
+              bg-white bg-clip-padding
+              border border-solid border-gray-300
+              rounded-full
+              transition
+              ease-in-out
+              m-0
+              focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+              mb-4
+              shadow-md'              
               id='name'
               name='username'
               value={username}
               placeholder='Enter your name'
               onChange={onChange}
             />
-          </div>
-          <div className='form-group'>
             <input
               type='email'
-              className='form-control'
+              className='form-control
+              form-control
+              block
+              w-3/4
+              px-3
+              py-1.5
+              text-base
+              font-normal
+              text-gray-700
+              bg-white bg-clip-padding
+              border border-solid border-gray-300
+              rounded-full
+              transition
+              ease-in-out
+              m-0
+              focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+              mb-4
+              shadow-md'              
               id='email'
               name='email'
               value={email}
               placeholder='Enter your email'
               onChange={onChange}
             />
-          </div>
-          <div className='form-group'>
             <input
               type='password'
-              className='form-control'
-              id='password'
+              className='form-control
+              form-control
+              block
+              w-3/4
+              px-3
+              py-1.5
+              text-base
+              font-normal
+              text-gray-700
+              bg-white bg-clip-padding
+              border border-solid border-gray-300
+              rounded-full
+              transition
+              ease-in-out
+              m-0
+              focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+              mb-4
+              shadow-md'              id='password'
               name='password'
               value={password}
               placeholder='Enter password'
               onChange={onChange}
             />
-          </div>
-          <div className='form-group'>
             <input
               type='password'
-              className='form-control'
-              id='password2'
+              className='form-control
+              form-control
+              block
+              w-3/4
+              px-3
+              py-1.5
+              text-base
+              font-normal
+              text-gray-700
+              bg-white bg-clip-padding
+              border border-solid border-gray-300
+              rounded-full
+              transition
+              ease-in-out
+              m-0
+              focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+              mb-8
+              shadow-md'              id='password2'
               name='password2'
               value={password2}
               placeholder='Confirm password'
               onChange={onChange}
             />
-          </div>
-          <div className='form-group'>
-            <button type='submit' className='btn btn-block'>
+            <button type='submit' className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full'>
               Submit
             </button>
-          </div>
         </form>
       </section>
 
-      <section>
-        <p>Already have an account?</p>
-        <button>
+      <section className='flex flex-col items-center w-full '>
+        <p className='mb-5'>Already have an account?</p>
+        <button className='text-2xl text-indigo-500 font-bolder'>
           <Link to={'/login'} >Login</Link>
         </button>
       </section>

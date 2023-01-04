@@ -89,35 +89,56 @@ function PostForm() {
   }
 
   return (
-    <section className='form'>
-      <form onSubmit={onSubmit}>
+    <section className='form border-2 rounded-xl p-10 w-1/2 flex flex-col items-center'>
+      <form onSubmit={onSubmit} className='w-3/4'>
         <div className='form-group'>
-          <h3>Care to Share?</h3>
-          <label htmlFor='title'>What's on your mind?</label>
+          <p className='text-xl font-bolder' >Care to Share?</p >
+          {/* <label htmlFor='title'>What's on your mind?</label> */}
           <br />
           <input
             type='text'
             name='title'
             id='text'
+            className='form-control
+              form-control
+              block
+              w-full
+              px-3
+              py-1.5
+              text-base
+              font-normal
+              text-gray-700
+              bg-white bg-clip-padding
+              border border-solid border-gray-00
+              shadow-md
+              rounded-full
+              transition
+              ease-in-out
+              m-0
+              focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+              mb-4'
             value={FormData.title}
             onChange={(e) => changeForm(e)}
           />
           {/* <label htmlFor=""></label> */}
         </div>
-        <label htmlFor="imageUpload">Images</label>
-        <p className="images-info">Up to 3 images</p>
+        <label htmlFor="imageUpload">Up to 3 mages 📷</label>
+        <br />
+        {/* <p className="images-info">Up to 3 images</p> */}
         <input 
+          className='
+            bg-green-400 hover:bg-blue-500 text-white font-bolder 
+          '
           type="file" 
           id='images'
-          className='input-file'
           onChange={changeForm}
           max='3'
           accept='.jpg,.png,.jpeg'
           multiple
           required
         />
-        <div className='form-group'>
-          <button className='btn btn-block' type='submit'>
+        <div className='form-group flex justify-center'>
+          <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full'>
             Post
           </button>
         </div>
