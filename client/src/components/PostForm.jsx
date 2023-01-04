@@ -1,15 +1,26 @@
-import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { createPost } from '../features/posts/postSlice'
+import { useState, useEffect } from 'react'
+import {
+  ref, 
+  uploadBytes,
+  getDownloadURL,
+  listAll,
+  list,
+} from 'firebase/storage'
+// import { storage } from './firebase'
 
 function PostForm() {
   const [form, setForm] = useState({
     title: '',
+    images: {},
   })
+  const [imageUpload, setImageUpload] = useState(null)
 
   const dispatch = useDispatch()
 
   const changeForm = (e) => {
+    if(e)
     setForm((prevState) => ({
       ...prevState,
       [e.target.name] : e.target.value
@@ -18,12 +29,15 @@ function PostForm() {
 
   const onSubmit = (e) => {
     e.preventDefault()
-
     dispatch(createPost(form))
     setForm({
-      title: ''
+      title: '',
+      images: {},
     })
   }
+
+
+
 
   return (
     <section className='form'>
@@ -47,10 +61,10 @@ function PostForm() {
           type="file" 
           id='images'
           className='input-file'
-          onChange={onMutate}
-          max='3'
+          onChange={changeForm}
+          max='1'
           accept='.jpg,.png,.jpeg'
-          multiple
+          // multiple
           required
         />
         <div className='form-group'>
