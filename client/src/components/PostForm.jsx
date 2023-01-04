@@ -41,6 +41,18 @@ function PostForm() {
           />
           {/* <label htmlFor=""></label> */}
         </div>
+        <label htmlFor="imageUpload">Images</label>
+        <p className="images-info">Up to 3 images</p>
+        <input 
+          type="file" 
+          id='images'
+          className='input-file'
+          onChange={onMutate}
+          max='3'
+          accept='.jpg,.png,.jpeg'
+          multiple
+          required
+        />
         <div className='form-group'>
           <button className='btn btn-block' type='submit'>
             Post

@@ -19,7 +19,7 @@ function SearchUsers() {
         <div className='results'>
           {users ? users.map((user, i) => 
             <div key={i} className="cursor-pointer text-xl font-medium text-purple-500" >
-              <Link to={`/profile/${user.id}`}>
+              <Link to={`/profile/${user.id}/${user.username}`}>
               {user.username}</Link>
             </div>
           ) 

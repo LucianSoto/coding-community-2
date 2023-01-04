@@ -19,12 +19,20 @@ const searchUsers = asyncHandler(async (req, res) => {
     message: 'success',
     data: userRef,
   })
+//  https://stackoverflow.com/questions/41836552/how-to-find-all-documents-with-only-looking-at-first-letter-of-the-values-in-mon 
+
+// regex to search users more broadly ie excluding upper/lowercase
 })
 
 const userPosts = asyncHandler(async (req, res) => {
-  console.log('in controller userposts')
-  const posts = await Post.find(req.params) 
-  console.log(posts)
+  const {id} = req.params
+  // console.log(id, 'in controller userposts')
+  const posts = await Post.find({'userId': {$in: id}})
+  // console.log(posts, 'posts')
+  res.status(200).json({
+    message: 'success',
+    data: posts,
+  })
 })
 
 module.exports = {

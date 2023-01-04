@@ -15,15 +15,14 @@ const searchUsers = async (search, token) => {
 }
 
 const userPosts = async (id, token) => {
-  console.log('in userposts service')
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   }
   const response = await axios.get(API_URL + `${id}`, config )
-  console.log(response.data, 'at userposts service')
-  return response.data
+  // console.log(response.data.data, 'at userposts service')
+  return response.data.data
 }
 
 const usersService = {
