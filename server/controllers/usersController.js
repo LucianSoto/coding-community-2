@@ -26,9 +26,8 @@ const searchUsers = asyncHandler(async (req, res) => {
 
 const userPosts = asyncHandler(async (req, res) => {
   const {id} = req.params
-  // console.log(id, 'in controller userposts')
+  console.log(id, 'in controller userposts')
   const posts = await Post.find({'userId': {$in: id}})
-  // console.log(posts, 'posts')
   res.status(200).json({
     message: 'success',
     data: posts,

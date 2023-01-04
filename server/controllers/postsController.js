@@ -19,34 +19,28 @@ const getPosts = asyncHandler(async (req, res) => {
 
 // Make a Post
 const setPost = asyncHandler(async (req, res) => {
-  // console.log(req.user, req.body.title)
+  // console.log(req.user, req.body.title, req.body.imgUrls, 'setting post at controller')
   if (!req.body.title) {
     res.status(400)
     throw new Error('Please add a text field')
   }
-
   const post = await Post.create({
     title: req.body.title,
+    imgUrls: req.body.imgUrls,
     userId: req.user.id,
   })
-
   res.status(200).json(post)
 })
 
-
-
 const deletePost = asyncHandler(async (req, res) => {
-  // console.log(req.params,'params')
-  // console.log(req.user, 'user')
+  // console.log(req.params,'params') console.log(req.user, 'user')
   const post = await Post.findById(req.params.id)
 
   if(!req.user){
-    // console.log('not user')
     res.status(401)
     throw new Error('User not found')
   }
   if(post.userId.toString() !== req.user.id) {
-    // console.log('not authoeized')
     res.status(401)
     throw new Error('User not authorized')
   }

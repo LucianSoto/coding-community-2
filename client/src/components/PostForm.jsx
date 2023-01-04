@@ -14,6 +14,7 @@ function PostForm() {
   const [imageUpload, setImageUpload] = useState(null)
   const [imageUrls, setImageUrls] = useState([])
   // const [progress, setProgress] = useState(0)
+
   const dispatch = useDispatch()
 
   const changeForm = (e) => {
@@ -34,7 +35,6 @@ function PostForm() {
     e.preventDefault()
     const storeImage = async (image) => {
       return new Promise((resolve, reject) => {
-        // console.log(image, 'in Store image', (typeof image))
         const fileName = `${image.name}-${uuidv4()}`
         // must call uuidv4() function for it to actually make the id's
         const storageRef = ref(storage, 'images/' + fileName)
@@ -55,8 +55,7 @@ function PostForm() {
                 break
               default:
                 break
-            }
-            //setProgress(progress) // another way to set progress
+            } // setProgress(progress) // alternate way of setting progress
           },
           (error) => {
             reject(error)
@@ -75,10 +74,20 @@ function PostForm() {
     ).catch(() => {
       return
     })
-    console.log(imgUrls,'image urls')
+
+    const updatedForm = {
+      ...form,
+      imgUrls,
+    }
+    delete updatedForm.images
+
+    dispatch(createPost(updatedForm))
+    // setForm({
+    //   title: '',
+    //   images: {},
+    // })
   }
 
-  console.log(form.images)
   return (
     <section className='form'>
       <form onSubmit={onSubmit}>

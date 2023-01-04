@@ -31,7 +31,7 @@ export const userPosts = createAsyncThunk(
   'users/posts',
   async (id, thunkAPI) => {
     try {
-      console.log('in userslice')
+      // console.log('in userslice')
       const token = thunkAPI.getState().auth.user.token
       return await usersService.userPosts(id, token)
     } catch (error) {
@@ -72,7 +72,7 @@ export const usersSlice = createSlice({
     .addCase(userPosts.fulfilled, (state, action) => {
       state.isLoading = false
       state.isError = true
-      state.users.push(action.payload)
+      state.users = action.payload
     })
     .addCase(userPosts.rejected, (state, action) => {
       state.isLoading = false

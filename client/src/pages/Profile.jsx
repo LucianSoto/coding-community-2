@@ -8,30 +8,34 @@ import { useParams, useNavigate } from 'react-router-dom'
 function Profile() {
   const mounted = useRef(false)
   const {id} = useParams()
+  console.log(id)
   const {username} = useParams()
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { users, isLoading, isError, message } = useSelector((state)=> state.users)
 
   useEffect(() => {
+    // console.log('in useEffect')
     if(mounted.current === false) {
-      if (isError) {
-        console.log(message)
-      }
-  
-      if (!users) {
-        navigate('/login')
-      } else {
-        dispatch(userPosts(id))
-        return () => {
-          dispatch(reset())
-        }
-      }
-      mounted = true
+      dispatch(userPosts(id))
+      dispatch(reset())
+      mounted.current = true
     }
+      // if (isError) {
+      //   console.log(message)
+      // }
+  
+      // if (Array.isArray(users) === false) {
+      //   navigate('/login')
+      // } else {
+      //   return () => {
+      //   }
+      // }
   }, [])
 
-  console.log(users)
+  console.log(users, 'posts')
+
+  console.log(users.map(post => post))
     
   if(isLoading) {
     return <Spinner />
@@ -40,12 +44,22 @@ function Profile() {
     <div id='profile'>
       <h1>{username}</h1>
       <div id='posts-container'>
-        { users &&
-            users[0].map((post, i) => (
+        { users ? 
+            users.map((post, i) => (
               <div className="single-post" key={i}>
-                {post.title}
-              </div>)
-            )
+                <p className="posttitle">{post.title}</p>
+                { post.imgUrls ?
+                  post.imgUrls.map((img, i) => (
+                    <img src={img} />
+                    // console.log(img)
+                  ))
+                  :
+                  null
+                }    
+              </div>
+            ))
+            :
+            null
         }
       </div>
       <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full'>Beriend</button>
