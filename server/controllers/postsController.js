@@ -55,9 +55,6 @@ const deletePost = asyncHandler(async (req, res) => {
 })
 
 const editPost = asyncHandler(async (req, res) => {
-  // console.log(req.user, 'user')
-  // console.log(req.body, 'body')
-  // console.log(req.params, 'params')
   const post = await Post.findById(req.params.id)
   if (!post) {
     res.status(400)
@@ -71,7 +68,6 @@ const editPost = asyncHandler(async (req, res) => {
     res.status(401)
     throw new Error('User not found')
   }
-  // console.log('about to edit')
   const updatePost = await Post.findByIdAndUpdate(req.params.id, req.body, {
     new:true,
   })

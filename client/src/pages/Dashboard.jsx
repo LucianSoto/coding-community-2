@@ -22,11 +22,11 @@ function Dashboard() {
 
     if (!user) {
       navigate('/login')
-    }
-
-    dispatch(getPosts())
-    return () => {
-      dispatch(reset())
+    } else {
+      dispatch(getPosts())
+      return () => {
+        dispatch(reset())
+      }
     }
   }, [user, navigate, isError, message, dispatch])
 
@@ -50,7 +50,7 @@ function Dashboard() {
             ))}
           </div>
         ) : (
-          <h3>You have no posts</h3>
+          <h3>Post something for the world to see!</h3>
         )}
       </section>
     </>

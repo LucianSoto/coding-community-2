@@ -1,8 +1,12 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { logout, reset } from '../features/auth/authSlice'
+import { useState } from 'react'
+import { searchUsers, reset as resetPostSlice } from '../features/users/usersSlice'
+// do I need reset for post slice?????
 
 function Nav() {
+  const [searchText, setSearchText] = useState('')
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { user } = useSelector((state) => state.auth)
@@ -10,7 +14,18 @@ function Nav() {
   const onLogout = () => {
     dispatch(logout())
     dispatch(reset())
-    navigate('/')
+    navigate('/login')
+  }
+
+  const submitSearch = (text) => {
+    if(text !== '') {
+    dispatch(searchUsers(text))
+    setSearchText('')
+    navigate(`/search/${text}`)
+    dispatch(resetPostSlice())
+    } else {
+      alert('search is empty')
+    }
   }
 
   return (
@@ -18,7 +33,17 @@ function Nav() {
       <div className='logo'>
         <Link to='/'>Home</Link>
       </div>
-      <ul>
+      <div className="search">
+        <input type="text" 
+          placeholder='Enter Full Name'
+          name="search"
+          value={searchText}
+          onChange={(e)=> setSearchText(prevState => e.target.value)}
+          onKeyDown={(e) => e.key === 'Enter' ? submitSearch(searchText)
+          : null}
+        />
+      </div>
+      <div>
         {user ? (
           
             <button className='btn' onClick={onLogout}>
@@ -35,7 +60,7 @@ function Nav() {
             </Link>
           </>
         )}
-      </ul>
+      </div>
     </header>
   )
 }

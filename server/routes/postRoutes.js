@@ -5,6 +5,7 @@ const {
   setPost,
   deletePost,
   editPost,
+  searchUsers,
 } = require('../controllers/postsController')
 
 const { protect } = require('../middleware/authMiddleware')

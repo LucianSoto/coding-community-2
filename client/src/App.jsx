@@ -7,6 +7,8 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Nav from './components/Nav'
 import UpdatePost from './pages/UpdatePost'
+import SearchUsers from './pages/SearchUsers'
+import Profile from './pages/Profile'
 
 function App() {
   return (
@@ -15,10 +17,12 @@ function App() {
         <div className='container'>
           <Nav />
           <Routes>
-            <Route path='/' element={<Dashboard />} />
+            <Route exact path='/' element={<Dashboard />} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
             <Route path='/update_post/:id' element={<UpdatePost/>} />
+            <Route path='/search/:user' element={<SearchUsers />} />
+            <Route path="/profile/:username" element={<Profile/>}/>
           </Routes>
         </div>
       </Router>

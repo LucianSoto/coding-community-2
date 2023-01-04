@@ -47,7 +47,7 @@ export const editPost = createAsyncThunk(
 )
 
 export const getPosts = createAsyncThunk(
-  'posts/',
+  'posts',
   async (_, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token

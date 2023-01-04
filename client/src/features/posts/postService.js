@@ -42,7 +42,7 @@ const deletePost = async (postId, token) => {
 }
 
 const editPost = async (postData, token) => {
-  console.log(postData, 'in edit')
+  // console.log(postData, 'in edit')
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,

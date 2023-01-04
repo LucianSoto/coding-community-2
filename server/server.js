@@ -16,7 +16,7 @@ app.use(cors())
 
 app.use('/api/posts', require('./routes/postRoutes'))
 app.use('/api/auth', require('./routes/authRoutes'))
-
+app.use('/api/users', require('./routes/usersRoutes'))
 // Serve frontend
 // if (process.env.NODE_ENV === 'production') {
 //   app.use(express.static(path.join(__dirname, '../frontend/build')));
