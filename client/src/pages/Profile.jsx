@@ -4,6 +4,7 @@ import Spinner from '../components/Spinner'
 import { userPosts, reset } from '../features/users/usersSlice'
 import { useParams, useNavigate } from 'react-router-dom'
 import PostItem from '../components/PostItem'
+import axios from 'axios'
 
 function Profile() {
   const mounted = useRef(false)
@@ -14,34 +15,24 @@ function Profile() {
   const dispatch = useDispatch()
   const { users, isLoading, isError, message } = useSelector((state)=> state.users)
 
+  // dispatch(userPosts(id))
   useEffect(() => {
-    // console.log('in useEffect')
-    if(mounted.current === false) {
-      dispatch(userPosts(id))
-      dispatch(reset())
-      mounted.current = true
-    }
     console.log('dispatching userposts')
     dispatch(userPosts(id))
-      // if (isError) {
-      //   console.log(message)
-      // }
-  
-      // if (Array.isArray(users) === false) {
-      //   navigate('/login')
-      // } else {
-      //   return () => {
-      //   }
-      // }
+    dispatch(reset())
   }, [])
 
-  console.log(users, 'posts')
+  useEffect(() => {
+      axios.get()
+  })
+
+  console.log((typeof users), 'posts')
 
   // console.log(users.map(post => post))
     
-  if(isLoading) {
-    return <Spinner />
-  }
+  // if(() {
+  //   return <Spinner />
+  // }
   return (
     <div id='profile ' className='mt-32 w-1/2'>
       <p className='text-5xl bold mb-5'>{username}</p>
@@ -57,6 +48,9 @@ function Profile() {
             ))
             :
             null
+        }
+        {
+          // dummydata
         }
       </div>
     </div>

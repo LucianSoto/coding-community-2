@@ -16,7 +16,7 @@ function PostItem({ post }) {
       <p className='text-xl mb-4'>{post.title}</p >
       { post ?
         post.imgUrls.map((img, i) => (
-        <img key={i} className='' src={img}/>
+        <img key={i} className='' src={img} alt={post.title}/>
       ))
       :
       null

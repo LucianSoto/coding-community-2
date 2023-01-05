@@ -2,7 +2,6 @@ import { useState, useEffect, } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import Spinner from '../components/Spinner'
-// import { }
 
 function SearchUsers() {
   const navigate = useNavigate()

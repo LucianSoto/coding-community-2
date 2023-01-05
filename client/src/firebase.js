@@ -22,12 +22,6 @@ const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
 
 export const storage = getStorage(app)
-
-
-
-
-
-
 // const initializeAppIfNecessary = () => {
 //   try {
 //     return getApp()
