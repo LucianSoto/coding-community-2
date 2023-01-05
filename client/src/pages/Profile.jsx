@@ -3,12 +3,12 @@ import {useSelector, useDispatch} from 'react-redux'
 import Spinner from '../components/Spinner'
 import { userPosts, reset } from '../features/users/usersSlice'
 import { useParams, useNavigate } from 'react-router-dom'
-
+import PostItem from '../components/PostItem'
 
 function Profile() {
   const mounted = useRef(false)
   const {id} = useParams()
-  console.log(id)
+  // console.log(id)
   const {username} = useParams()
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -21,6 +21,8 @@ function Profile() {
       dispatch(reset())
       mounted.current = true
     }
+    console.log('dispatching userposts')
+    dispatch(userPosts(id))
       // if (isError) {
       //   console.log(message)
       // }
@@ -35,38 +37,28 @@ function Profile() {
 
   console.log(users, 'posts')
 
-  console.log(users.map(post => post))
+  // console.log(users.map(post => post))
     
   if(isLoading) {
     return <Spinner />
   }
   return (
-    <div id='profile ' className='mt-32'>
-      <p className='text-5xl bold'>{username}</p>
-      <div id='posts-container'>
-        { users ? 
+    <div id='profile ' className='mt-32 w-1/2'>
+      <p className='text-5xl bold mb-5'>{username}</p>
+      <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mb-10'
+
+      >
+        Beriend +
+      </button>
+      <div id='posts-container '>
+        { users !== [] ? 
             users.map((post, i) => (
-              <div className="single-post" key={i}>
-                <p className="posttitle">{post.title}</p>
-                { post.imgUrls ?
-                  post.imgUrls.map((img, i) => (
-                    <img src={img} alt={post.title}/>
-                    // console.log(img)
-                  ))
-                  :
-                  null
-                }    
-              </div>
+              <PostItem key={post._id} post={post} />
             ))
             :
             null
         }
       </div>
-      <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full'
-
-      >
-        Beriend
-      </button>
     </div>
   )
 }

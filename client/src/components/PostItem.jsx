@@ -11,12 +11,16 @@ function PostItem({ post }) {
   const dispatch = useDispatch()
   console.log(post, 'in postitem')
   return (
-    <div className='border shadow-xl mb-10 p-10 rounded-lg'>
+    <div className='border shadow-xl mb-10 p-10 rounded-lg '>
       {/* <div>{new Date(post.createdAt).toLocaleString('en-US')}</div> */}
       <p className='text-xl mb-4'>{post.title}</p >
-      { post.imgUrls.map((img, i) => (
-        <img className='' src={img}/>
-      ))}
+      { post ?
+        post.imgUrls.map((img, i) => (
+        <img key={i} className='' src={img}/>
+      ))
+      :
+      null
+    }
       <div className="bottom-con w-full flex justify-between text-2xl">
         <div className=" flex items-center ">
           <FcLike className=''/>
