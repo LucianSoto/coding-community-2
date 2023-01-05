@@ -37,22 +37,22 @@ function Dashboard() {
   return (
     <>
       <section className='heading mt-24'>
-        <h1 className='font-bolder text-4xl mb-10'>Welcome {user && user.username}</h1>
+        <h1 className='font-bold text-4xl mb-10'>Welcome {user && user.username}</h1>
       </section>
 
       <PostForm />
 
-      <section className='content'>
+      {/* <section className='content'> */}
         {posts.length > 0 ? (
-          <div className=''>
+          <div className='w-4/5 flex flex-col items-center'>
             {posts.map((post) => (
               <PostItem key={post._id} post={post} />
             ))}
           </div>
         ) : (
-          <h3>Post something for the world to see!</h3>
+          <p className='text-3xl bolder'>Post something for the world to see!</p>
         )}
-      </section>
+      {/* </section> */}
     </>
   )
 }

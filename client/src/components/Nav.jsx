@@ -30,7 +30,7 @@ function Nav() {
 
   return (
     <header className='header bg-white px-2 sm:px-4 py-2.5 bg-gradient-to-r from-indigo-600 to-cyan-500 ... fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600  flex justify-between pl-4 pr-10'>
-      <div className='pl-4 logo text-4xl font-semibold whitespace-nowrap dark:text-white'>
+      <div className='pl-4 logo text-3xl font-semibold whitespace-nowrap dark:text-white'>
         <Link to='/'>Coding Community</Link>
       </div>
       <div className="search">
@@ -50,7 +50,7 @@ function Nav() {
           rounded-full
           transition
           ease-in-out
-          m-0
+          mr-20
           focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
         "
           placeholder=' Search Users by Full Name'
@@ -64,7 +64,7 @@ function Nav() {
       <div>
         {user ? (
           
-            <button className='btn' onClick={onLogout}>
+            <button className='text-2xl pr-10 font-semibold text-white' onClick={onLogout}>
               Logout
             </button>
           

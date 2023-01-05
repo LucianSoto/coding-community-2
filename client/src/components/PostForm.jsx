@@ -89,7 +89,7 @@ function PostForm() {
   }
 
   return (
-    <section className='form border-2 rounded-xl p-10 w-1/2 flex flex-col items-center'>
+    <section className='form border shadow-xl rounded-xl p-10 w-1/2 flex flex-col items-center mb-10'>
       <form onSubmit={onSubmit} className='w-3/4'>
         <div className='form-group'>
           <p className='text-xl font-bolder' >Care to Share?</p >
@@ -114,7 +114,6 @@ function PostForm() {
               rounded-full
               transition
               ease-in-out
-              m-0
               focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
               mb-4'
             value={FormData.title}
@@ -122,12 +121,13 @@ function PostForm() {
           />
           {/* <label htmlFor=""></label> */}
         </div>
-        <label htmlFor="imageUpload">Up to 3 mages 📷</label>
+        <label htmlFor="imageUpload" className='text-gray-400'>Up to 3 mages 📷</label>
         <br />
         {/* <p className="images-info">Up to 3 images</p> */}
         <input 
           className='
-            bg-green-400 hover:bg-blue-500 text-white font-bolder 
+           inputFile
+          //  cursor-pointer
           '
           type="file" 
           id='images'
@@ -137,8 +137,8 @@ function PostForm() {
           multiple
           required
         />
-        <div className='form-group flex justify-center'>
-          <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full'>
+        <div className='form-group flex justify-center mt-5'>
+          <button className='bg-blue-500 hover:bg-blue-700 w-1/4 text-white font-bold py-2 px-4 rounded-full'>
             Post
           </button>
         </div>

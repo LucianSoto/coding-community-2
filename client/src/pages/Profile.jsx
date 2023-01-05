@@ -41,8 +41,8 @@ function Profile() {
     return <Spinner />
   }
   return (
-    <div id='profile'>
-      <h1>{username}</h1>
+    <div id='profile ' className='mt-32'>
+      <p className='text-5xl bold'>{username}</p>
       <div id='posts-container'>
         { users ? 
             users.map((post, i) => (
@@ -50,7 +50,7 @@ function Profile() {
                 <p className="posttitle">{post.title}</p>
                 { post.imgUrls ?
                   post.imgUrls.map((img, i) => (
-                    <img src={img} />
+                    <img src={img} alt={post.title}/>
                     // console.log(img)
                   ))
                   :
@@ -62,7 +62,11 @@ function Profile() {
             null
         }
       </div>
-      <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full'>Beriend</button>
+      <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full'
+
+      >
+        Beriend
+      </button>
     </div>
   )
 }
