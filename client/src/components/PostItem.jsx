@@ -11,7 +11,7 @@ function PostItem({ post }) {
   const dispatch = useDispatch()
   console.log(post, 'in postitem')
   return (
-    <div className='border shadow-xl mb-10 p-10 rounded-lg '>
+    <div className='border shadow-xl mb-10 p-10 rounded-lg'>
       {/* <div>{new Date(post.createdAt).toLocaleString('en-US')}</div> */}
       <p className='text-xl mb-4'>{post.title}</p >
       { post ?

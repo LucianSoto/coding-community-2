@@ -28,8 +28,8 @@ code {
 }
 
 img {
-  width: 750px;
-  height: 395px;
+  width: 350px;
+  height: auto;
 }
 
 .inputFile {
