@@ -41,7 +41,7 @@ function Profile() {
       <div id='posts-container '>
         { users !== [] ? 
 
-            users.map((post, i) => (
+            users.posts.map((post, i) => (
               <PostItem key={post._id} post={post} />
             ))
             :

@@ -2,8 +2,10 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import usersService from './usersService'
 
 const initialState = {
-  users: [],
-  userPosts: [],
+  users: {
+    users: [],
+    posts: [],
+  },
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -60,7 +62,7 @@ export const usersSlice = createSlice({
     .addCase(searchUsers.fulfilled, (state, action) => {
       state.isLoading = false
       state.isError = true
-      state.users.push(action.payload)
+      state.users.users.push(action.payload)
     })
     .addCase(searchUsers.rejected, (state, action ) => {
       state.isLoading = false
@@ -73,12 +75,12 @@ export const usersSlice = createSlice({
     .addCase(userPosts.fulfilled, (state, action) => {
       state.isLoading = false
       state.isError = true
-      state.userPosts = action.payload
+      state.users.posts.push(action.payload)
     })
     .addCase(userPosts.rejected, (state, action) => {
       state.isLoading = false
       state.isError = true
-      state.userPosts = action.payload
+      state.users = action.payload
     })
   }
 })

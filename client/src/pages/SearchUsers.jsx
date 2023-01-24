@@ -16,7 +16,7 @@ function SearchUsers() {
       <div className='w-1/2 p-10 flex flex-col items-center'> 
         <h3 className='text-3xl mt-32 mb-10 font-bold'>User Search Results</h3>
         <div className='results w-3/4 h-full rounded-xl  border shadow-xl '>
-          {users ? users.map((user, i) => 
+          {users ? users.users.map((user, i) => 
             <div key={i} className="cursor-pointer text-xl font-medium text-purple-600 p-5 border-b w-full " >
               <Link to={`/profile/${user.id}/${user.username}`}>
               {user.username}</Link>
