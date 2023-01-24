@@ -9,6 +9,7 @@ import axios from 'axios'
 function Profile() {
   const mounted = useRef(false)
   const {id} = useParams()
+  
   // console.log(id)
   const {username} = useParams()
   const navigate = useNavigate()
@@ -17,7 +18,7 @@ function Profile() {
 
   // dispatch(userPosts(id))
   useEffect(() => {
-    console.log('dispatching userposts')
+    console.log('dispatching userposts', id)
     dispatch(userPosts(id))
     dispatch(reset())
   }, [])
@@ -27,22 +28,19 @@ function Profile() {
   })
 
   console.log((typeof users), 'posts')
-
-  // console.log(users.map(post => post))
-    
-  // if(() {
-  //   return <Spinner />
-  // }
+  if(isLoading) {
+    return <Spinner />
+  }
   return (
     <div id='profile ' className='mt-32 w-1/2'>
       <p className='text-5xl bold mb-5'>{username}</p>
       <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mb-10'
-
       >
         Beriend +
       </button>
       <div id='posts-container '>
         { users !== [] ? 
+
             users.map((post, i) => (
               <PostItem key={post._id} post={post} />
             ))

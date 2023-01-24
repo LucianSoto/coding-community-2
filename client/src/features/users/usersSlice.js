@@ -3,6 +3,7 @@ import usersService from './usersService'
 
 const initialState = {
   users: [],
+  userPosts: [],
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -72,12 +73,12 @@ export const usersSlice = createSlice({
     .addCase(userPosts.fulfilled, (state, action) => {
       state.isLoading = false
       state.isError = true
-      state.users = action.payload
+      state.userPosts = action.payload
     })
     .addCase(userPosts.rejected, (state, action) => {
       state.isLoading = false
       state.isError = true
-      state.users = action.payload
+      state.userPosts = action.payload
     })
   }
 })
