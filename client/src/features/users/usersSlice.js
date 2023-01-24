@@ -62,7 +62,7 @@ export const usersSlice = createSlice({
     .addCase(searchUsers.fulfilled, (state, action) => {
       state.isLoading = false
       state.isError = true
-      state.users.users.push(action.payload)
+      state.users.users = action.payload
     })
     .addCase(searchUsers.rejected, (state, action ) => {
       state.isLoading = false
@@ -75,7 +75,7 @@ export const usersSlice = createSlice({
     .addCase(userPosts.fulfilled, (state, action) => {
       state.isLoading = false
       state.isError = true
-      state.users.posts.push(action.payload)
+      state.users.posts = action.payload
     })
     .addCase(userPosts.rejected, (state, action) => {
       state.isLoading = false

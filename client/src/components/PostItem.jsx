@@ -9,25 +9,25 @@ import { FcLike } from 'react-icons/fc'
 function PostItem({ post }) {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  console.log(post[0], 'in postitem')
+  console.log(post, 'in postitem')
   return (
     <div className='border shadow-xl mb-10 p-10 rounded-lg'>
-      <p className='text-xl mb-4'>{post[0].title}</p >
-      {/* { post ?
+      <p className='text-xl mb-4'>{post.title}</p >
+      { post ?
         post.imgUrls.map((img, i) => (
         <img key={i} className='' src={img} alt={post.title}/>
       ))
       :
       null
-      } */}
+      }
       <div className="bottom-con w-full flex justify-between text-2xl">
         <div className=" flex items-center ">
           <FcLike className=''/>
-          <p className="likes ml-2">{post[0].likes.length}</p>
+          <p className="likes ml-2">{post.likes.length}</p>
         </div>
         <div className=" flex items-center">
-          <GoTrashcan onClick={() => dispatch(deletePost(post[0]._id))} className='close mr-2'/>
-          <BiEdit onClick={()=> navigate(`/update_post/${post[0]._id}`) } className=''/>
+          <GoTrashcan onClick={() => dispatch(deletePost(post._id))} className='close mr-2'/>
+          <BiEdit onClick={()=> navigate(`/update_post/${post._id}`) } className=''/>
         </div>
       </div>
     </div>

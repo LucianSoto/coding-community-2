@@ -1,5 +1,5 @@
-import {useState, useEffect, useRef } from 'react'
-import {useSelector, useDispatch} from 'react-redux'
+import { useState, useEffect, useRef } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import Spinner from '../components/Spinner'
 import { userPosts, reset } from '../features/users/usersSlice'
 import { useParams, useNavigate } from 'react-router-dom'
@@ -9,25 +9,31 @@ import axios from 'axios'
 function Profile() {
   const mounted = useRef(false)
   const {id} = useParams()
-  
-  // console.log(id)
   const {username} = useParams()
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const { user } = useSelector((state) => state.auth)
   const { users, isLoading, isError, message } = useSelector((state)=> state.users)
 
-  // dispatch(userPosts(id))
   useEffect(() => {
-    console.log('dispatching userposts', id)
-    dispatch(userPosts(id))
-    dispatch(reset())
+    if (mounted.current === false) {
+      if(isError) {
+        console.log(message)
+      }
+      if(!user) {
+        navigate('/login')
+      } else {
+        console.log('dispatching userposts', id)
+        dispatch(userPosts(id))
+        return () => {
+          dispatch(reset())
+        }
+      }
+    } else {
+      // mounted.current = true
+    }
   }, [])
 
-  useEffect(() => {
-      axios.get()
-  })
-
-  console.log((typeof users), 'posts')
   if(isLoading) {
     return <Spinner />
   }
